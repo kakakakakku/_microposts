@@ -38,19 +38,13 @@ class UsersController < ApplicationController
   end
 
   def followings
-    if logged_in?
-      @following_users = current_user.following_users
-    else
-      redirect_to root_path
-    end
+    @user = User.find(params[:id])
+    @users = @user.following_users
   end
   
   def followers
-    if logged_in?
-      @follower_users = current_user.follower_users
-    else
-      redirect_to root_path
-    end
+    @user = User.find(params[:id])
+    @users = @user.follower_users
   end
 
   private

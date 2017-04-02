@@ -5,7 +5,19 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+      <%= link_to(followings_user_path(@user)) do %>
+        <h4>Following (<%= @user.following_users.count %>)</h4>
+      <% end %>
+      <%= link_to(followers_user_path(@user)) do %>
+        <h4>Follower (<%= @user.follower_users.count %>)</h4>
+      <% end %>
     </section>
+    <div class="panel panel-default">
+      <div class="panel-heading">メールアドレス</div>
+      <div class="panel-body"><%= @user.email %></div>
+      <div class="panel-heading">プロフィール</div>
+      <div class="panel-body"><%= @user.profile %></div>
+    </div>
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>
